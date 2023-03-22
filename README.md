@@ -1,1 +1,3 @@
 # pizzabot
+
+![](terminal.png)
