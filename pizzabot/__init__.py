@@ -1,1 +1,1 @@
-from pizza.main import *
+from pizzabot.main import *
