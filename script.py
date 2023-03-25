@@ -1,3 +1,3 @@
-import pizzabot as pizza
+import pizzatopper as pizza
 
 pizza.Bot().run()
