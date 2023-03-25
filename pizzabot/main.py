@@ -1,6 +1,8 @@
 import numpy as np
 from scipy.stats import beta
 import json
+from termcolor import colored
+
 
 class Bot:
     def __init__(self):
@@ -16,6 +18,8 @@ class Bot:
         self.likelihoods = np.array([0.2, 0.1, 0.15, 0.05, 0.1, 0.05, 0.1, 0.1, 0.05, 0.1])
 
         self.toppings = ['Pepperoni', 'Mushrooms', 'Onions', 'Sausage', 'Bacon', 'Extra cheese', 'Black olives', 'Green peppers', 'Pineapple', 'Spinach']
+        self.recommended_toppings = []
+        self.answer = 'y'
 
         dtoppings = dict(enumerate(self.toppings))
         pretty_json = json.dumps(dtoppings, indent=4)
@@ -56,16 +60,40 @@ class Bot:
 
         for topping, probability in recommendations:
             print(f"#{k} || {self.toppings.index(topping)} : {topping} ({probability*100:.2f}%)")
+            self.recommended_toppings.append(topping)
             k+=1
 
         # Update priors for next iteration (if desired)
         self.prior_alpha, self.prior_beta = posterior_alpha, posterior_beta
 
-    def run(self):
+    def recur(self):
         #init 
+        self.recommended_toppings = []
         self.make_choices()
 
         print("Would you like to make other choices based on our recommendations [(y)/n]?")
-        answer = input()
-        while answer != 'n':
-            self.run()
+        self.answer = input()
+        while self.answer != 'n':
+            self.recur()
+
+
+    def run(self):
+
+        self.recur()
+
+        print("How many toppings would you like for your pizza?")
+        num_toppings = int(input())
+        
+        pizzachains = {"Dominos": "https://www.dominos.com",
+                       "Pizza Hut" : "https://www.pizzahut.com",
+                       "Little Caesars": "https://littlecaesars.com",
+                       "Papa John's": "https://papajohns.com"
+                       }
+        
+        print()
+        [print( colored("{} \t:: {}".format(i,pizzachains[i]),'blue','on_yellow') ) for i in pizzachains.keys()]
+        print("\nRecommendation*: Order a pizza with ",end='')
+
+        print(colored(','.join(self.recommended_toppings[:num_toppings]),'green'))
+
+        print("*made with a Bayesian inference algorithm")
