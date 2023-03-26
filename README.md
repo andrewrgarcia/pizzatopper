@@ -5,5 +5,5 @@ PizzaTopper: A reference to "pizza" and "topper" indicating the software's abili
 My practice on Bayesian inference programming and ChatGPT-facilitated code development. 
 
 
-![](imgs/3DP_andrewdev-1.png)
+![](imgs/3DP_garcia.png)
 ![](imgs/terminal.png)
