@@ -23,7 +23,7 @@ toppings = [
 mesh = pizza_base + toppings
 
 # Add some texture to the pizza base
-texture = pv.read_texture("../fork/textures/pizza_texture.jpg")
+texture = pv.read_texture("pizza_texture.jpg")
 mesh.textures["pizza_texture"] = texture
 
 # Render the mesh

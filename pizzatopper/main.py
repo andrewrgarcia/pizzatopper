@@ -6,8 +6,7 @@ from termcolor import colored
 
 class Bot:
     def __init__(self):
-        pass
-
+        # pass
         # Define the prior distribution over toppings
         # Here, we assume that every topping is equally likely
         self.prior_alpha = np.ones(10)
@@ -15,7 +14,7 @@ class Bot:
 
         # Define the likelihood function for each topping
         # Here, we assume that the likelihood of a topping is proportional to its popularity
-        self.likelihoods = np.array([0.2, 0.1, 0.15, 0.05, 0.1, 0.05, 0.1, 0.1, 0.05, 0.1])
+        self.likelihoods = np.array([0.6, 0.1, 0.15, 0.05, 0.1, 0.05, 0.1, 0.1, 0.01, 0.1])
 
         self.toppings = ['Pepperoni', 'Mushrooms', 'Onions', 'Sausage', 'Bacon', 'Extra cheese', 'Black olives', 'Green peppers', 'Pineapple', 'Spinach']
         self.recommended_toppings = []
@@ -94,6 +93,7 @@ class Bot:
         [print( colored("{} \t:: {}".format(i,pizzachains[i]),'blue','on_yellow') ) for i in pizzachains.keys()]
         print("\nRecommendation*: Order a pizza with ",end='')
 
-        print(colored(','.join(self.recommended_toppings[:num_toppings]),'green'))
+        self.recommended_toppings = self.recommended_toppings[:num_toppings]
+        print(colored(','.join(self.recommended_toppings),'green'))
 
         print("*made with a Bayesian inference algorithm")
