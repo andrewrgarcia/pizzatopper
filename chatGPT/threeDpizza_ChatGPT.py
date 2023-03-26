@@ -30,3 +30,13 @@ mesh.textures["pizza_texture"] = texture
 p = pv.Plotter()
 p.add_mesh(mesh, texture="pizza_texture")
 p.show()
+
+'''
+In this script, we first create a sphere to represent the pizza base using the Sphere class from Pyvista. We then create 6 smaller spheres to represent the toppings and position them on the pizza base using their center attribute.
+
+Next, we combine the pizza base and toppings into a single mesh using the + operator. We add a texture to the pizza base using an image file pizza_texture.jpg and assign it to the textures attribute of the mesh.
+
+Finally, we create a Plotter object from Pyvista, add the mesh to it, and use the show method to display the 3D model of the pizza.
+
+Note: You'll need to have the pyvista module installed in your environment to run this script. You can install it using pip by running pip install pyvista. Also, make sure to have a pizza_texture.jpg image file in the same directory as the script.
+'''
